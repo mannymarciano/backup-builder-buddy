@@ -8,6 +8,8 @@ import {
   useNodesState,
   useEdgesState,
   addEdge,
+  Position,
+  PanelPosition,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 
@@ -145,7 +147,7 @@ const Index = () => {
         className="bg-background"
         minZoom={0.5}
         maxZoom={1.5}
-        attributionPosition="hidden"
+        proOptions={{ hideAttribution: true }}
       >
         <Background 
           color="#444" 
