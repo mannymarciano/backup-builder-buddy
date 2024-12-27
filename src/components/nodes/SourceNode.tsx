@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Handle, Position } from '@xyflow/react';
 import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-const SourceNode = () => {
+const SourceNode = ({ data }: { data: any }) => {
+  const [platform, setPlatform] = useState('');
+  const [url, setUrl] = useState('');
+  const [apiKey, setApiKey] = useState('');
+
+  useEffect(() => {
+    const isComplete = platform === 'bubble' && url && apiKey;
+    if (window.parent) {
+      window.parent.postMessage({ type: 'SOURCE_COMPLETE', isComplete }, '*');
+    }
+  }, [platform, url, apiKey]);
+
   return (
     <Card className="w-[300px] p-4 bg-card text-card-foreground">
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="platform">Platform</Label>
-          <Select>
+          <Select value={platform} onValueChange={setPlatform}>
             <SelectTrigger id="platform">
               <SelectValue placeholder="Select platform" />
             </SelectTrigger>
@@ -25,12 +36,23 @@ const SourceNode = () => {
         
         <div className="space-y-2">
           <Label htmlFor="url">Bubble.io URL</Label>
-          <Input id="url" placeholder="https://your-app.bubble.io" />
+          <Input 
+            id="url" 
+            placeholder="https://your-app.bubble.io" 
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+          />
         </div>
         
         <div className="space-y-2">
           <Label htmlFor="apiKey">API Key</Label>
-          <Input id="apiKey" type="password" placeholder="Enter your API key" />
+          <Input 
+            id="apiKey" 
+            type="password" 
+            placeholder="Enter your API key" 
+            value={apiKey}
+            onChange={(e) => setApiKey(e.target.value)}
+          />
         </div>
       </div>
       <Handle type="source" position={Position.Bottom} className="w-2 h-2" />
