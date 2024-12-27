@@ -86,7 +86,7 @@ const Index = () => {
       </ReactFlow>
 
       <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="bg-white rounded-full shadow-lg px-6 py-3 flex space-x-8 animate-fade-in">
+        <div className="bg-white rounded-full shadow-lg px-6 py-3 flex space-x-8 transition-all duration-300 ease-in-out">
           <Button variant="ghost" className="text-sm">Dashboard</Button>
           <Button variant="ghost" className="text-sm">Backups</Button>
           <Button variant="ghost" className="text-sm">Settings</Button>
