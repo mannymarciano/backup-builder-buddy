@@ -1,11 +1,12 @@
-import React from "react";
-import BuilderBlock from "./BuilderBlock";
+import React from 'react';
+import { Handle, Position } from '@xyflow/react';
+import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 
-const DestinationBlock = () => {
+const DestinationNode = () => {
   return (
-    <BuilderBlock title="Destination" className="ml-16">
+    <Card className="w-[300px] p-4 bg-card text-card-foreground">
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="destination">Backup Destination</Label>
@@ -37,8 +38,9 @@ const DestinationBlock = () => {
           </Select>
         </div>
       </div>
-    </BuilderBlock>
+      <Handle type="target" position={Position.Top} className="w-2 h-2" />
+    </Card>
   );
 };
 
-export default DestinationBlock;
+export default DestinationNode;

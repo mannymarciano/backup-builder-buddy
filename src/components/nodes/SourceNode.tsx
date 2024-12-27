@@ -1,12 +1,13 @@
-import React from "react";
-import BuilderBlock from "./BuilderBlock";
+import React from 'react';
+import { Handle, Position } from '@xyflow/react';
+import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-const SourceBlock = () => {
+const SourceNode = () => {
   return (
-    <BuilderBlock title="Source Configuration">
+    <Card className="w-[300px] p-4 bg-card text-card-foreground">
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="platform">Platform</Label>
@@ -32,8 +33,9 @@ const SourceBlock = () => {
           <Input id="apiKey" type="password" placeholder="Enter your API key" />
         </div>
       </div>
-    </BuilderBlock>
+      <Handle type="source" position={Position.Bottom} className="w-2 h-2" />
+    </Card>
   );
 };
 
-export default SourceBlock;
+export default SourceNode;

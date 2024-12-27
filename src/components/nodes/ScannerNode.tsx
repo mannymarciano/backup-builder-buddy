@@ -1,12 +1,13 @@
-import React from "react";
-import BuilderBlock from "./BuilderBlock";
+import React from 'react';
+import { Handle, Position } from '@xyflow/react';
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-const ScannerBlock = () => {
+const ScannerNode = () => {
   return (
-    <BuilderBlock title="Data Scanner" className="ml-16">
+    <Card className="w-[300px] p-4 bg-card text-card-foreground">
       <div className="space-y-4">
         <div className="flex justify-end">
           <Button variant="outline" size="sm">
@@ -24,8 +25,10 @@ const ScannerBlock = () => {
           </div>
         </ScrollArea>
       </div>
-    </BuilderBlock>
+      <Handle type="target" position={Position.Top} className="w-2 h-2" />
+      <Handle type="source" position={Position.Bottom} className="w-2 h-2" />
+    </Card>
   );
 };
 
-export default ScannerBlock;
+export default ScannerNode;
