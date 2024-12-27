@@ -1,28 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Handle, Position } from '@xyflow/react';
 import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 
-const DestinationNode = ({ data }: { data: any }) => {
-  const [destination, setDestination] = useState('');
-  const [region, setRegion] = useState('');
-
-  useEffect(() => {
-    const isComplete = destination === 'cloud' && region;
-    if (window.parent) {
-      window.parent.postMessage({ type: 'DESTINATION_COMPLETE', isComplete }, '*');
-    }
-  }, [destination, region]);
-
-  if (!data.visible) return null;
-
+const DestinationNode = () => {
   return (
     <Card className="w-[300px] p-4 bg-card text-card-foreground">
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="destination">Backup Destination</Label>
-          <Select value={destination} onValueChange={setDestination}>
+          <Select>
             <SelectTrigger id="destination">
               <SelectValue placeholder="Select destination" />
             </SelectTrigger>
@@ -37,7 +25,7 @@ const DestinationNode = ({ data }: { data: any }) => {
         
         <div className="space-y-2">
           <Label htmlFor="region">Region</Label>
-          <Select value={region} onValueChange={setRegion}>
+          <Select>
             <SelectTrigger id="region">
               <SelectValue placeholder="Select region" />
             </SelectTrigger>

@@ -1,30 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Handle, Position } from '@xyflow/react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-const ScannerNode = ({ data }: { data: any }) => {
-  const [scanned, setScanned] = useState(false);
-
-  useEffect(() => {
-    if (window.parent) {
-      window.parent.postMessage({ type: 'SCANNER_COMPLETE', isComplete: scanned }, '*');
-    }
-  }, [scanned]);
-
-  const handleRescan = () => {
-    setScanned(true);
-  };
-
-  if (!data.visible) return null;
-
+const ScannerNode = () => {
   return (
     <Card className="w-[300px] p-4 bg-card text-card-foreground">
       <div className="space-y-4">
         <div className="flex justify-end">
-          <Button variant="outline" size="sm" onClick={handleRescan}>
+          <Button variant="outline" size="sm">
             <RefreshCw className="h-4 w-4 mr-2" />
             Rescan
           </Button>
