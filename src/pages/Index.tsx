@@ -79,6 +79,7 @@ const Index = () => {
         nodeTypes={nodeTypes}
         fitView
         className="bg-background"
+        defaultViewport={{ x: 0, y: 0, zoom: 1 }}
         proOptions={{ hideAttribution: true }}
       >
         <Background color="#444" gap={16} />
