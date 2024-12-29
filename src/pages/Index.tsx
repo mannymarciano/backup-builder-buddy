@@ -54,6 +54,12 @@ const navigationItems = [
   'Settings'
 ];
 
+// Define the minimum and maximum boundaries for the workspace
+const MIN_X = 0;
+const MAX_X = 800;
+const MIN_Y = 0;
+const MAX_Y = 600;
+
 const Index = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -62,6 +68,24 @@ const Index = () => {
     (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges],
   );
+
+  // Handle node drag to prevent moving outside boundaries
+  const onNodeDragStop = useCallback((event, node) => {
+    const x = Math.max(MIN_X, Math.min(MAX_X, node.position.x));
+    const y = Math.max(MIN_Y, Math.min(MAX_Y, node.position.y));
+    
+    setNodes((nds) =>
+      nds.map((n) => {
+        if (n.id === node.id) {
+          return {
+            ...n,
+            position: { x, y },
+          };
+        }
+        return n;
+      })
+    );
+  }, [setNodes]);
 
   return (
     <div className="w-full h-screen bg-background">
@@ -85,7 +109,7 @@ const Index = () => {
               key={item}
               href="#"
               className={`text-sm ${
-                item === 'Overview' 
+                item === 'Builder' 
                   ? 'text-black border-b-2 border-black' 
                   : 'text-gray-500 hover:text-black'
               }`}
@@ -102,8 +126,11 @@ const Index = () => {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
+        onNodeDragStop={onNodeDragStop}
         nodeTypes={nodeTypes}
         fitView
+        minZoom={0.5}
+        maxZoom={1.5}
         proOptions={{ hideAttribution: true }}
         className="bg-background"
       >
