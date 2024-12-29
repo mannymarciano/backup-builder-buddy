@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import {
   ReactFlow,
+  MiniMap,
   Controls,
   Background,
   useNodesState,
@@ -57,12 +58,7 @@ const Index = () => {
   );
 
   return (
-    <div className="w-full h-screen bg-background relative">
-      <div className="fixed top-0 left-0 right-0 z-10 bg-white border-b p-4 flex justify-between items-center">
-        <div className="font-bold text-xl">Logo</div>
-        <Button variant="ghost">Sign Out</Button>
-      </div>
-
+    <div className="w-full h-screen bg-background">
       <div className="fixed top-4 right-4 z-10">
         <Button variant="default">
           <Plus className="h-4 w-4 mr-2" />
@@ -79,20 +75,11 @@ const Index = () => {
         nodeTypes={nodeTypes}
         fitView
         className="bg-background"
-        defaultViewport={{ x: 0, y: 0, zoom: 1 }}
-        proOptions={{ hideAttribution: true }}
       >
         <Background color="#444" gap={16} />
         <Controls />
+        <MiniMap />
       </ReactFlow>
-
-      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="bg-white rounded-full shadow-lg px-6 py-3 flex space-x-8 transition-all duration-300 ease-in-out">
-          <Button variant="ghost" className="text-sm">Dashboard</Button>
-          <Button variant="ghost" className="text-sm">Backups</Button>
-          <Button variant="ghost" className="text-sm">Settings</Button>
-        </div>
-      </div>
     </div>
   );
 };
