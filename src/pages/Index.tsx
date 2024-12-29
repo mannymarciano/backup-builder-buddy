@@ -1,6 +1,4 @@
 import React, { useCallback } from 'react';
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
 import {
   ReactFlow,
   Controls,
@@ -10,6 +8,7 @@ import {
   addEdge,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import SourceNode from "@/components/nodes/SourceNode";
 import ScannerNode from "@/components/nodes/ScannerNode";
@@ -47,6 +46,20 @@ const initialEdges = [
   { id: 'e2-3', source: 'scanner-1', target: 'destination-1', animated: true },
 ];
 
+const navigationItems = [
+  'Overview',
+  'Integrations',
+  'Activity',
+  'Domains',
+  'Usage',
+  'Monitoring',
+  'Observability',
+  'Storage',
+  'AI',
+  'Support',
+  'Settings'
+];
+
 const Index = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -58,11 +71,35 @@ const Index = () => {
 
   return (
     <div className="w-full h-screen bg-background">
-      <div className="fixed top-4 right-4 z-10">
-        <Button variant="default">
-          <Plus className="h-4 w-4 mr-2" />
-          Create New Backup
-        </Button>
+      {/* Top Bar */}
+      <div className="w-full h-16 border-b flex items-center justify-between px-4">
+        <div className="flex items-center space-x-2">
+          <div className="w-8 h-8 bg-black rounded-sm"></div>
+          <span className="font-medium">Project Name</span>
+        </div>
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+      </div>
+
+      {/* Navigation Bar */}
+      <div className="w-full h-12 border-b flex items-center px-4">
+        <nav className="flex space-x-6">
+          {navigationItems.map((item) => (
+            <a
+              key={item}
+              href="#"
+              className={`text-sm ${
+                item === 'Overview' 
+                  ? 'text-black border-b-2 border-black' 
+                  : 'text-gray-500 hover:text-black'
+              }`}
+            >
+              {item}
+            </a>
+          ))}
+        </nav>
       </div>
       
       <ReactFlow
