@@ -24,27 +24,50 @@ const initialNodes = [
   {
     id: 'source-1',
     type: 'sourceNode',
-    position: { x: 250, y: 100 },
-    data: { label: 'Source' },
+    position: { x: 250, y: 50 },
+    data: {},
+    draggable: true,
+    connectable: true,
   },
   {
     id: 'scanner-1',
     type: 'scannerNode',
-    position: { x: 250, y: 300 },
-    data: { label: 'Scanner' },
+    position: { x: 250, y: 250 },
+    data: {},
+    draggable: true,
+    connectable: true,
   },
   {
     id: 'destination-1',
     type: 'destinationNode',
-    position: { x: 250, y: 500 },
-    data: { label: 'Destination' },
+    position: { x: 250, y: 450 },
+    data: {},
+    draggable: true,
+    connectable: true,
   },
 ];
 
 const initialEdges = [
-  { id: 'e1-2', source: 'source-1', target: 'scanner-1', animated: true },
-  { id: 'e2-3', source: 'scanner-1', target: 'destination-1', animated: true },
+  { 
+    id: 'e1-2', 
+    source: 'source-1', 
+    target: 'scanner-1', 
+    animated: true,
+    style: { stroke: '#333' }
+  },
+  { 
+    id: 'e2-3', 
+    source: 'scanner-1', 
+    target: 'destination-1', 
+    animated: true,
+    style: { stroke: '#333' }
+  },
 ];
+
+const MIN_X = 0;
+const MAX_X = 800;
+const MIN_Y = 0;
+const MAX_Y = 600;
 
 const navigationItems = [
   'Builder',
@@ -53,12 +76,6 @@ const navigationItems = [
   'Support',
   'Settings'
 ];
-
-// Define the minimum and maximum boundaries for the workspace
-const MIN_X = 0;
-const MAX_X = 800;
-const MIN_Y = 0;
-const MAX_Y = 600;
 
 const Index = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -69,7 +86,6 @@ const Index = () => {
     [setEdges],
   );
 
-  // Handle node drag to prevent moving outside boundaries
   const onNodeDragStop = useCallback((event, node) => {
     const x = Math.max(MIN_X, Math.min(MAX_X, node.position.x));
     const y = Math.max(MIN_Y, Math.min(MAX_Y, node.position.y));
@@ -89,7 +105,6 @@ const Index = () => {
 
   return (
     <div className="w-full h-screen bg-background">
-      {/* Top Bar */}
       <div className="w-full h-16 border-b flex items-center justify-between px-4">
         <div className="flex items-center space-x-2">
           <div className="w-8 h-8 bg-black rounded-sm"></div>
@@ -101,7 +116,6 @@ const Index = () => {
         </Avatar>
       </div>
 
-      {/* Navigation Bar */}
       <div className="w-full h-12 border-b flex items-center px-4">
         <nav className="flex space-x-6">
           {navigationItems.map((item) => (
