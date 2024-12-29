@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import {
   ReactFlow,
-  MiniMap,
   Controls,
   Background,
   useNodesState,
@@ -74,11 +73,11 @@ const Index = () => {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         fitView
+        proOptions={{ hideAttribution: true }}
         className="bg-background"
       >
-        <Background color="#444" gap={16} />
+        <Background color="#000000" gap={16} />
         <Controls />
-        <MiniMap />
       </ReactFlow>
     </div>
   );
