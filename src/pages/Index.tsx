@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import {
   ReactFlow,
-  Controls,
   Background,
   useNodesState,
   useEdgesState,
@@ -18,6 +17,7 @@ import { useToast } from "@/hooks/use-toast";
 import SourceNode from "@/components/nodes/SourceNode";
 import ScannerNode from "@/components/nodes/ScannerNode";
 import DestinationNode from "@/components/nodes/DestinationNode";
+import FlowControls from '@/components/flow/FlowControls';
 
 const nodeTypes = {
   sourceNode: SourceNode,
@@ -189,28 +189,30 @@ const Index = () => {
         </Button>
       </div>
       
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        onNodeDragStop={onNodeDragStop}
-        nodeTypes={nodeTypes}
-        fitView
-        minZoom={0.5}
-        maxZoom={1.5}
-        proOptions={{ hideAttribution: true }}
-        className="bg-background"
-      >
-        <Background 
-          color="#e5e5e5"
-          gap={16} 
-          size={1}
-          className="transition-opacity duration-300"
-        />
-        <Controls />
-      </ReactFlow>
+      <div className="w-full h-[calc(100vh-7rem)]">
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          onNodeDragStop={onNodeDragStop}
+          nodeTypes={nodeTypes}
+          fitView
+          minZoom={0.5}
+          maxZoom={1.5}
+          proOptions={{ hideAttribution: true }}
+          className="bg-background"
+        >
+          <Background 
+            color="#e5e5e5"
+            gap={16} 
+            size={1}
+            className="transition-opacity duration-300"
+          />
+          <FlowControls onAddBackup={addBackupInstance} />
+        </ReactFlow>
+      </div>
     </div>
   );
 };
