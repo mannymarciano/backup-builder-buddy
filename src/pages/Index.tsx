@@ -47,15 +47,9 @@ const initialEdges = [
 ];
 
 const navigationItems = [
-  'Overview',
-  'Integrations',
+  'Builder',
+  'Backups',
   'Activity',
-  'Domains',
-  'Usage',
-  'Monitoring',
-  'Observability',
-  'Storage',
-  'AI',
   'Support',
   'Settings'
 ];
