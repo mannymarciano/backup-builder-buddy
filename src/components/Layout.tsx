@@ -3,15 +3,9 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const navigationItems = [
-  { path: 'overview', label: 'Overview' },
-  { path: 'integrations', label: 'Integrations' },
+  { path: 'builder', label: 'Builder' },
+  { path: 'backups', label: 'Backups' },
   { path: 'activity', label: 'Activity' },
-  { path: 'domains', label: 'Domains' },
-  { path: 'usage', label: 'Usage' },
-  { path: 'monitoring', label: 'Monitoring' },
-  { path: 'observability', label: 'Observability' },
-  { path: 'storage', label: 'Storage' },
-  { path: 'ai', label: 'AI' },
   { path: 'support', label: 'Support' },
   { path: 'settings', label: 'Settings' }
 ];
